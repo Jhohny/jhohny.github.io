@@ -1,26 +1,300 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Jhonathan</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Jhonathan - Rails Developer & Handyman">
+  <meta name="keywords" content="Rails Developer, Ruby on Rails, Full-Stack Developer, Web Development, Backend Developer">
+  <meta name="author" content="Jhonathan">
+  <title>Jhonathan - Rails Developer</title>
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jhonathan.dev/">
+  <meta property="og:title" content="Jhonathan - Rails Developer & Handyman">
+  <meta property="og:description" content="Rails Developer & Handyman">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary">
+  <meta property="twitter:url" content="https://jhonathan.dev/">
+  <meta property="twitter:title" content="Jhonathan - Rails Developer & Handyman">
+  <meta property="twitter:description" content="Rails Developer & Handyman">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
-    body {
+    * {
       margin: 0;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-family: sans-serif;
-      background: #fafafa;
+      padding: 0;
+      box-sizing: border-box;
     }
-    h1 {
-      font-size: 3rem;
-      color: #333;
+
+    :root {
+      --bg-dark: #1e1e1e;
+      --bg-console: #0c0c0c;
+      --text-primary: #d4d4d4;
+      --text-secondary: #969696;
+      --rails-red: #cc0000;
+      --rails-green: #00aa00;
+      --rails-blue: #0066cc;
+      --rails-yellow: #ffaa00;
+      --prompt: #569cd6;
+      --border: #3e3e3e;
+      --success: #4ec9b0;
+      --warning: #dcdcaa;
+    }
+
+    body {
+      font-family: 'JetBrains Mono', monospace;
+      background: var(--bg-dark);
+      color: var(--text-primary);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      position: relative;
+      line-height: 1.4;
+    }
+
+    .container {
+      max-width: 900px;
+      width: 100%;
+    }
+
+    .rails-console {
+      background: var(--bg-console);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .console-header {
+      background: var(--bg-dark);
+      padding: 0.75rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.9rem;
+    }
+
+    .console-title {
+      color: var(--text-secondary);
+    }
+
+    .rails-version {
+      color: var(--rails-red);
+      font-weight: 600;
+    }
+
+    .console-content {
+      padding: 1.5rem;
+      max-height: 70vh;
+      overflow-y: auto;
+    }
+
+    .console-line {
+      margin-bottom: 0.5rem;
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .prompt {
+      color: var(--prompt);
+      margin-right: 0.5rem;
+      font-weight: 500;
+    }
+
+    .command {
+      color: var(--text-primary);
+    }
+
+    .output {
+      color: var(--text-secondary);
+      margin-left: 0;
+      margin-bottom: 1rem;
+    }
+
+    .success {
+      color: var(--success);
+    }
+
+    .warning {
+      color: var(--warning);
+    }
+
+    .error {
+      color: var(--rails-red);
+    }
+
+    .info {
+      color: var(--rails-blue);
+    }
+
+    .highlight {
+      color: var(--rails-yellow);
+      font-weight: 500;
+    }
+
+    .developer-info {
+      background: rgba(76, 201, 176, 0.1);
+      border: 1px solid var(--success);
+      border-radius: 4px;
+      padding: 1rem;
+      margin: 1rem 0;
+    }
+
+    .contact-section {
+      background: rgba(86, 156, 214, 0.1);
+      border: 1px solid var(--prompt);
+      border-radius: 4px;
+      padding: 1rem;
+      margin: 1rem 0;
+    }
+
+    .contact-link {
+      color: var(--rails-blue);
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .contact-link:hover {
+      color: var(--success);
+      text-shadow: 0 0 8px rgba(76, 201, 176, 0.5);
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 8px;
+      height: 16px;
+      background: var(--text-primary);
+      animation: blink 1s infinite;
+      margin-left: 2px;
+    }
+
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
+    }
+
+    .gem-info {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    .model-output {
+      color: var(--success);
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem;
+      }
+
+      .console-content {
+        padding: 1rem;
+        font-size: 0.9rem;
+      }
+
+      .console-header {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+      }
+    }
+
+    /* Scrollbar styling */
+    .console-content::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .console-content::-webkit-scrollbar-track {
+      background: var(--bg-console);
+    }
+
+    .console-content::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 4px;
+    }
+
+    .console-content::-webkit-scrollbar-thumb:hover {
+      background: var(--text-secondary);
     }
   </style>
 </head>
 <body>
-  <h1>Jhonathan</h1>
+  <div class="container">
+    <div class="rails-console">
+      <div class="console-header">
+        <span class="console-title">Rails Console - Development Environment</span>
+        <span class="rails-version">Rails 7.1.2</span>
+      </div>
+
+      <div class="console-content">
+        <div class="console-line">
+          <span class="output">Loading development environment (Rails 7.1.2)</span>
+        </div>
+
+        <div class="console-line">
+          <span class="prompt">3.2.0 :001 ></span>
+          <span class="command">Developer.find_by(name: "Jhonathan")</span>
+        </div>
+
+        <div class="output model-output">
+=> #&lt;Developer:0x00007f8b1c123456
+  id: 1,
+  name: "Jhonathan",
+  role: "Rails Developer or Any other really",
+  experience: "Enough",
+  specialties: ["Ruby on Rails", "Etc"],
+  location: "Remote",
+  available: true,
+  created_at: "2020-01-15 10:30:00 UTC",
+  updated_at: "2025-01-01 00:00:00 UTC">
+        </div>
+
+        <div class="console-line">
+          <span class="prompt">3.2.0 :002 ></span>
+          <span class="command">Developer.last.contact_info</span>
+        </div>
+
+        <div class="contact-section">
+          <div class="output">=> {</div>
+          <div class="output">&nbsp;&nbsp;<span class="highlight">email:</span> "<a href="mailto:hello@jhonathan.dev" class="contact-link">hello@jhonathan.dev</a>",</div>
+          <div class="output">&nbsp;&nbsp;<span class="highlight">github:</span> "<a href="https://github.com/jhohny" target="_blank" rel="noopener noreferrer" class="contact-link">github.com/jhohny</a>",</div>
+          <div class="output">}</div>
+        </div>
+
+        <div class="console-line">
+          <span class="prompt">3.2.0 :003 ></span>
+          <span class="command">Developer.last.skills.pluck(:name)</span>
+        </div>
+
+        <div class="output">
+=> ["Ruby on Rails", "PostgreSQL (cause every project needs a database)", "Redis (or Solid Queue if we want to be on the edge)", "Sidekiq", "RSpec (and sometimes Minitest)",
+    "JavaScript here and there", "Getting work done with Stimulus", "Turbo", "Enough Docker to be dangerous", "Some AWS", "Some Heroku"]
+        </div>
+
+        <div class="console-line">
+          <span class="prompt">3.2.0 :005 ></span>
+          <span class="command">puts "I'm not a CSS expert, this was possible thanks to an AI model"</span>
+        </div>
+
+        <div class="developer-info">
+          <div class="output success">I'm not a CSS expert, this was possible thanks to an AI model</div>
+          <div class="output">=> nil</div>
+        </div>
+
+        <div class="console-line">
+          <span class="prompt">3.2.0 :006 ></span>
+          <span class="cursor"></span>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
