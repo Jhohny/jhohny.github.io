@@ -224,6 +224,27 @@
     .console-content::-webkit-scrollbar-thumb:hover {
       background: var(--text-secondary);
     }
+
+    .signature-image {
+      display: flex;
+      justify-content: center;
+      margin-top: 2rem;
+      padding: 1rem;
+      width: 100%;
+    }
+
+    .signature-img {
+      max-width: 100%; /* This will respect the container width */
+      width: auto;
+      height: 200px;
+      border-radius: 8px;
+      opacity: 0.8;
+      transition: opacity 0.3s ease;
+    }
+
+    .signature-img:hover {
+      opacity: 1;
+    }
   </style>
 </head>
 <body>
@@ -295,6 +316,12 @@
         </div>
       </div>
     </div>
+
+    <!-- separate image element -->
+    <div class = "signature-image">
+      <img src="image.png" alt="jhonathan's signature" class="signature-img">
+    </div>
+
   </div>
 </body>
 </html>
